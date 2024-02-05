@@ -1,6 +1,6 @@
 
-#ifndef EXAMPLE_JWT_JWT_HPP
-#define EXAMPLE_JWT_JWT_HPP
+#ifndef USER_MANAGEMENT_JWT_HPP
+#define USER_MANAGEMENT_JWT_HPP
 
 #include "oatpp/web/server/handler/AuthorizationHandler.hpp"
 #include "oatpp/core/Types.hpp"
@@ -31,4 +31,4 @@ public:
 
 };
 
-#endif //EXAMPLE_JWT_JWT_HPP
+#endif //USER_MANAGEMENT_JWT_HPP

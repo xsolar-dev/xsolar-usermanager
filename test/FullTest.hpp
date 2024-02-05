@@ -1,6 +1,6 @@
 
-#ifndef EXAMPLE_JWT_FULLTEST_HPP
-#define EXAMPLE_JWT_FULLTEST_HPP
+#ifndef USER_MANAGEMENT_FULLTEST_HPP
+#define USER_MANAGEMENT_FULLTEST_HPP
 
 #include "oatpp-test/UnitTest.hpp"
 
@@ -14,4 +14,4 @@ public:
 };
 
 
-#endif //EXAMPLE_JWT_FULLTEST_HPP
+#endif //USER_MANAGEMENT_FULLTEST_HPP

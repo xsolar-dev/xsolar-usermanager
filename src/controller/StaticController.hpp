@@ -1,6 +1,6 @@
 
-#ifndef EXAMPLE_JWT_STATICCONTROLLER_HPP
-#define EXAMPLE_JWT_STATICCONTROLLER_HPP
+#ifndef USER_MANAGEMENT_STATICCONTROLLER_HPP
+#define USER_MANAGEMENT_STATICCONTROLLER_HPP
 
 #include "oatpp/web/server/api/ApiController.hpp"
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
@@ -42,4 +42,4 @@ public:
 
 #include OATPP_CODEGEN_BEGIN(ApiController) //<- End Codegen
 
-#endif //EXAMPLE_JWT_STATICCONTROLLER_HPP
+#endif //USER_MANAGEMENT_STATICCONTROLLER_HPP

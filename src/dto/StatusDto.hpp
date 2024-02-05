@@ -1,6 +1,6 @@
 
-#ifndef EXAMPLE_JWT_STATUSDTO_HPP
-#define EXAMPLE_JWT_STATUSDTO_HPP
+#ifndef USER_MANAGEMENT_STATUSDTO_HPP
+#define USER_MANAGEMENT_STATUSDTO_HPP
 
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
@@ -30,4 +30,4 @@ class StatusDto : public oatpp::DTO {
 
 #include OATPP_CODEGEN_END(DTO)
 
-#endif //EXAMPLE_JWT_STATUSDTO_HPP
+#endif //USER_MANAGEMENT_STATUSDTO_HPP

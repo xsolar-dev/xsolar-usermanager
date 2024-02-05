@@ -1,5 +1,5 @@
-#ifndef EXAMPLE_JWT_DB_MODEL_USERMODEL_HPP
-#define EXAMPLE_JWT_DB_MODEL_USERMODEL_HPP
+#ifndef USER_MANAGEMENT_DB_MODEL_USERMODEL_HPP
+#define USER_MANAGEMENT_DB_MODEL_USERMODEL_HPP
 
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
@@ -19,4 +19,4 @@ class UserModel : public oatpp::DTO {
 
 #include OATPP_CODEGEN_END(DTO)
 
-#endif /* EXAMPLE_JWT_DB_MODEL_USERMODEL_HPP */
+#endif /* USER_MANAGEMENT_DB_MODEL_USERMODEL_HPP */

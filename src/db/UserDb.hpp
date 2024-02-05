@@ -1,6 +1,6 @@
 
-#ifndef EXAMPLE_JWT_USERDB_HPP
-#define EXAMPLE_JWT_USERDB_HPP
+#ifndef USER_MANAGEMENT_USERDB_HPP
+#define USER_MANAGEMENT_USERDB_HPP
 
 #include "model/UserModel.hpp"
 #include "oatpp-postgresql/orm.hpp"
@@ -60,4 +60,4 @@ public:
 
 #include OATPP_CODEGEN_END(DbClient) //<- End Codegen
 
-#endif //EXAMPLE_JWT_USERDB_HPP
+#endif //USER_MANAGEMENT_USERDB_HPP

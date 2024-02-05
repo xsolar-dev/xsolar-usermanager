@@ -1,6 +1,6 @@
 
-#ifndef EXAMPLE_JWT_PAGEDTO_HPP
-#define EXAMPLE_JWT_PAGEDTO_HPP
+#ifndef USER_MANAGEMENT_PAGEDTO_HPP
+#define USER_MANAGEMENT_PAGEDTO_HPP
 
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
@@ -21,4 +21,4 @@ class PageDto : public oatpp::DTO {
 
 #include OATPP_CODEGEN_END(DTO)
 
-#endif //EXAMPLE_JWT_PAGEDTO_HPP
+#endif //USER_MANAGEMENT_PAGEDTO_HPP

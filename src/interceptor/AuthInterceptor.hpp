@@ -1,6 +1,6 @@
 
-#ifndef EXAMPLE_JWT_AUTHINTERCEPTOR_HPP
-#define EXAMPLE_JWT_AUTHINTERCEPTOR_HPP
+#ifndef USER_MANAGEMENT_AUTHINTERCEPTOR_HPP
+#define USER_MANAGEMENT_AUTHINTERCEPTOR_HPP
 
 #include "auth/AuthHandler.hpp"
 
@@ -20,4 +20,4 @@ public:
   std::shared_ptr<OutgoingResponse> intercept(const std::shared_ptr<IncomingRequest>& request) override;
 };
 
-#endif //EXAMPLE_JWT_AUTHINTERCEPTOR_HPP
+#endif //USER_MANAGEMENT_AUTHINTERCEPTOR_HPP
