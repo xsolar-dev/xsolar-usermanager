@@ -21,6 +21,7 @@ add_library(xsolar-usermanager-lib
         src/interceptor/AuthInterceptor.hpp
         src/service/AuthService.cpp
         src/service/AuthService.hpp
+        src/service/UserService.cpp
         src/AppComponent.hpp
         src/DatabaseComponent.hpp
         src/SwaggerComponent.hpp

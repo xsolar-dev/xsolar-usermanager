@@ -6,8 +6,8 @@
 
 #include OATPP_CODEGEN_BEGIN(DTO)
 
-class UserModel : public oatpp::DTO {
-
+class UserModel : public oatpp::DTO 
+{
   DTO_INIT(UserModel, DTO)
 
   DTO_FIELD(String, id);

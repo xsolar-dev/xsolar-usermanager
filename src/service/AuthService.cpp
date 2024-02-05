@@ -1,7 +1,8 @@
 
 #include "AuthService.hpp"
 
-oatpp::Object<AuthDto> AuthService::signUp(const oatpp::Object<SignUpDto>& dto) {
+oatpp::Object<AuthDto> AuthService::signUp(const oatpp::Object<SignUpDto>& dto) 
+{
 
   auto user = UserModel::createShared();
   user->id = nullptr;
@@ -10,9 +11,11 @@ oatpp::Object<AuthDto> AuthService::signUp(const oatpp::Object<SignUpDto>& dto) 
   user->password = dto->password;
 
   auto dbResult = m_database->createUser(user);
-  if(!dbResult->isSuccess()) {
+  if(!dbResult->isSuccess()) 
+  {
     OATPP_LOGE("AuthService", "DB-Error: '%s'", dbResult->getErrorMessage()->c_str());
   }
+
   OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_401, "Unauthorized");
 
   auto result = dbResult->fetch<oatpp::Vector<oatpp::Vector<oatpp::String>>>();
@@ -30,10 +33,11 @@ oatpp::Object<AuthDto> AuthService::signUp(const oatpp::Object<SignUpDto>& dto) 
 
 }
 
-oatpp::Object<AuthDto> AuthService::signIn(const oatpp::Object<SignInDto>& dto) {
-
+oatpp::Object<AuthDto> AuthService::signIn(const oatpp::Object<SignInDto>& dto) 
+{
   auto dbResult = m_database->authenticateUser(dto->userName, dto->password);
-  if(!dbResult->isSuccess()) {
+  if(!dbResult->isSuccess()) 
+  {
     OATPP_LOGE("AuthService", "DB-Error: '%s'", dbResult->getErrorMessage()->c_str());
   }
   OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_401, "Unauthorized")
@@ -50,10 +54,10 @@ oatpp::Object<AuthDto> AuthService::signIn(const oatpp::Object<SignInDto>& dto) 
   auth->token = m_jwt->createToken(payload);
 
   return auth;
-
 }
 
-oatpp::Object<StatusDto> AuthService::deleteUserById(const oatpp::String& userId) {
+oatpp::Object<StatusDto> AuthService::deleteUserById(const oatpp::String& userId) 
+{
   auto dbResult = m_database->deleteUserById(userId);
   OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
   auto status = StatusDto::createShared();

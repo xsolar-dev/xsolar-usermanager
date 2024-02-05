@@ -1,7 +1,7 @@
+#ifndef USERSERVICE_H
+#define USERSERVICE_H
 
-#ifndef USER_MANAGEMENT_AUTHSERVICE_HPP
-#define USER_MANAGEMENT_AUTHSERVICE_HPP
-
+#pragma once
 #include "auth/JWT.hpp"
 
 #include "db/UserDb.hpp"
@@ -14,7 +14,7 @@
 #include "oatpp/web/protocol/http/Http.hpp"
 #include "oatpp/core/macro/component.hpp"
 
-class AuthService 
+class UserService
 {
 private:
   typedef oatpp::web::protocol::http::Status Status;
@@ -24,10 +24,15 @@ private:
   OATPP_COMPONENT(std::shared_ptr<JWT>, m_jwt); // Inject JWT component
 
 public:
-  oatpp::Object<AuthDto> signUp(const oatpp::Object<SignUpDto>& dto);
-  oatpp::Object<AuthDto> signIn(const oatpp::Object<SignInDto>& dto);
-  oatpp::Object<StatusDto> deleteUserById(const oatpp::String& id);
+    UserService();
+    ~UserService();
+
+    oatpp::Object<StatusDto> deleteUserById(const oatpp::String& id);
+    oatpp::Object<StatusDto> deleteUserByName(const oatpp::String& id);
+    
+
+private:
 
 };
 
-#endif //USER_MANAGEMENT_AUTHSERVICE_HPP
+#endif

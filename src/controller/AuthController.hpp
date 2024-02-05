@@ -12,22 +12,27 @@
 /**
  * User REST controller.
  */
-class AuthController : public oatpp::web::server::api::ApiController {
+class AuthController : public oatpp::web::server::api::ApiController 
+{
 public:
   AuthController(const std::shared_ptr<ObjectMapper>& objectMapper)
     : oatpp::web::server::api::ApiController(objectMapper)
   {}
+
 private:
   AuthService m_userService; // Create user service.
+
 public:
 
   static std::shared_ptr<AuthController> createShared(
     OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, objectMapper) // Inject objectMapper component here as default parameter
-  ){
+  )
+  {
     return std::make_shared<AuthController>(objectMapper);
   }
 
-  ENDPOINT_INFO(signUp) {
+  ENDPOINT_INFO(signUp) 
+  {
     info->summary = "Sign up";
 
     info->addConsumes<Object<SignUpDto>> ("application/json");
@@ -35,13 +40,15 @@ public:
     info->addResponse<Object<AuthDto>> (Status::CODE_200, "application/json");
     info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
   }
+
   ENDPOINT("POST", "users/signup", signUp,
            BODY_DTO(Object<SignUpDto>, dto))
   {
     return createDtoResponse(Status::CODE_200, m_userService.signUp(dto));
   }
 
-  ENDPOINT_INFO(signIn) {
+  ENDPOINT_INFO(signIn) 
+  {
     info->summary = "Sign in";
 
     info->addConsumes <Object<SignInDto>> ("application/json");
@@ -49,18 +56,21 @@ public:
     info->addResponse <Object<AuthDto>> (Status::CODE_200, "application/json");
     info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
   }
+
   ENDPOINT("POST", "users/signin", signIn,
            BODY_DTO(Object<SignInDto>, dto))
   {
     return createDtoResponse(Status::CODE_200, m_userService.signIn(dto));
   }
 
-  ENDPOINT_INFO(deleteUser) {
+  ENDPOINT_INFO(deleteUser) 
+  {
     info->summary = "Delete User";
 
     info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
     info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
   }
+  
   ENDPOINT("DELETE", "users", deleteUser,
            BUNDLE(String, userId))
   {
