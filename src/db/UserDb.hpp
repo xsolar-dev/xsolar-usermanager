@@ -56,6 +56,10 @@ public:
         PREPARE(true), // prepared statement!
         PARAM(oatpp::String, id))
 
+  QUERY(deleteUserByName,
+      "DELETE from users WHERE username=:username;",
+      PREPARE(true),
+      PARAM(oatpp::String, username))
 };
 
 #include OATPP_CODEGEN_END(DbClient) //<- End Codegen

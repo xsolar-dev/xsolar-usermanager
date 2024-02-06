@@ -10,6 +10,7 @@ add_library(xsolar-usermanager-lib
         src/auth/JWT.hpp
         src/controller/StaticController.hpp
         src/controller/AuthController.hpp
+        src/controller/AdminController.hpp
         src/db/model/UserModel.hpp
         src/db/UserDb.hpp
         src/dto/AuthDto.hpp
