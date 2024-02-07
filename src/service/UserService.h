@@ -10,6 +10,7 @@
 #include "dto/SignInDto.hpp"
 #include "dto/AuthDto.hpp"
 #include "dto/StatusDto.hpp"
+#include "dto/UserDto.hpp"
 
 #include "oatpp/web/protocol/http/Http.hpp"
 #include "oatpp/core/macro/component.hpp"
