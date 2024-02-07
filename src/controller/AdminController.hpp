@@ -6,6 +6,7 @@
 #include "oatpp/web/server/api/ApiController.hpp"
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 #include "oatpp/core/macro/codegen.hpp"
+#include <bits/stdint-uintn.h>
 #include <memory>
 #include <oatpp/core/macro/component.hpp>
 
@@ -42,6 +43,21 @@ public:
         BUNDLE(String, id))
         {
             return createDtoResponse(Status::CODE_200, this->m_userService.deleteUserById(id));
+        }
+
+    ENDPOINT("GET", "admin/list/offset/{offset}/limit/{limit}", listUser, 
+        BUNDLE(String, userId),
+           PATH(UInt32, offset),
+           PATH(UInt32, limit))
+        {
+            return createDtoResponse(Status::CODE_200, this->m_userService.getUserList(offset, limit));
+        }
+
+    ENDPOINT("GET","admin/user/{id}", getUser,
+        BUNDLE(String, userId),
+        PATH(String, id))
+        {
+            return createDtoResponse(Status::CODE_200, this->m_userService.getUserById(id));
         }
 };
 
