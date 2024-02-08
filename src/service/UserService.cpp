@@ -45,10 +45,34 @@ oatpp::Object<StatusDto> UserService::deleteUserByName(const oatpp::String& name
 
 oatpp::Object<PageDto<oatpp::Object<UserDto>>> UserService::getUserList(const oatpp::UInt32& offset, const oatpp::UInt32& limit)
 {
-    auto userList = UserPageDto::createShared();
+    oatpp::UInt32 countToFetch = limit;
 
-    userList->limit = limit;
+    if (countToFetch > 10)
+        countToFetch = 10;
+
+    auto dbResult = m_database->getAllUsers(offset, countToFetch);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+
+    auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<UserDto>>>();
+
+    oatpp::Vector<oatpp::Object<UserDto>> users({});
+    for(auto& item : * items) 
+    {
+        // convert dbModel to DTO
+        auto user = UserDto::createShared();
+        user->id = item->id;
+        user->userName = item->userName;
+        user->password = item->password;
+        user->email = item->email;
+
+        users->push_back(user);
+    }
+
+
+    auto userList = UserPageDto::createShared();
+    userList->limit = countToFetch;
     userList->offset = offset;
+    userList->items = users;
 
     return userList;
 }
