@@ -13,7 +13,7 @@ class UserModel : public oatpp::DTO
   DTO_FIELD(String, id);
   DTO_FIELD(String, userName, "username");
   DTO_FIELD(String, email, "email");
-  DTO_FIELD(String, password, "password");
+  DTO_FIELD(String, pswhash, "pswhash");
 
 };
 

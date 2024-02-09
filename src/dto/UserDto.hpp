@@ -14,7 +14,7 @@ class UserDto : public oatpp::DTO {
   DTO_FIELD(String, id);
   DTO_FIELD(String, userName);
   DTO_FIELD(String, email);
-  DTO_FIELD(String, password);
+  DTO_FIELD(String, pswhash);
   
 };
 

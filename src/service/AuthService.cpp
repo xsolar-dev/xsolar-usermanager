@@ -8,7 +8,7 @@ oatpp::Object<AuthDto> AuthService::signUp(const oatpp::Object<SignUpDto>& dto)
   user->id = nullptr;
   user->userName = dto->userName;
   user->email = dto->email;
-  user->password = dto->password;
+  user->pswhash = dto->pswhash;
 
   auto dbResult = m_database->createUser(user);
   if(!dbResult->isSuccess()) 

@@ -50,10 +50,10 @@ oatpp::Object<PageDto<oatpp::Object<UserDto>>> UserService::getUserList(const oa
     if (countToFetch > 10)
         countToFetch = 10;
 
-    auto dbResult = m_database->getAllUsers(offset, countToFetch);
+    auto dbResult = m_database->getAllUsers(countToFetch, offset);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
-    auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<UserDto>>>();
+    auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<UserModel>>>();
 
     oatpp::Vector<oatpp::Object<UserDto>> users({});
     for(auto& item : * items) 
@@ -62,7 +62,7 @@ oatpp::Object<PageDto<oatpp::Object<UserDto>>> UserService::getUserList(const oa
         auto user = UserDto::createShared();
         user->id = item->id;
         user->userName = item->userName;
-        user->password = item->password;
+        user->pswhash = item->pswhash;
         user->email = item->email;
 
         users->push_back(user);
@@ -72,6 +72,7 @@ oatpp::Object<PageDto<oatpp::Object<UserDto>>> UserService::getUserList(const oa
     auto userList = UserPageDto::createShared();
     userList->limit = countToFetch;
     userList->offset = offset;
+    userList->count = users->size();
     userList->items = users;
 
     return userList;
@@ -90,7 +91,7 @@ oatpp::Object<UserDto> UserService::getUserById(const oatpp::String& id)
     auto user = UserDto::createShared();
     user->id = result[0]->id;
     user->userName = result[0]->userName;
-    user->password = result[0]->password;
+    user->pswhash = result[0]->pswhash;
     user->email = result[0]->email;
 
     return user;

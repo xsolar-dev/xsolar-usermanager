@@ -67,15 +67,15 @@ public:
             PARAM(oatpp::String, id))
 
       QUERY(deleteUserByName,
-            "DELETE from users WHERE username=:username;",
+            "DELETE from users WHERE username=:username",
             PREPARE(true),
             PARAM(oatpp::String, username))
 
       QUERY(getAllUsers,
-            "SELECT * FROM users LIMIT :limit OFFSET :offset;",
+            "SELECT * FROM users LIMIT :limit OFFSET :offset",
             PREPARE(true), // prepared statement!            
-            PARAM(oatpp::UInt32, offset),
-            PARAM(oatpp::UInt32, limit))
+            PARAM(oatpp::UInt32, limit),
+            PARAM(oatpp::UInt32, offset))
 
       QUERY(getUserById,
             "SELECT * FROM users WHERE id=:id",
