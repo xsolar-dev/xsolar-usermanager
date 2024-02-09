@@ -81,8 +81,17 @@ oatpp::Object<UserDto> UserService::getUserById(const oatpp::String& id)
 {
     auto dbResult = m_database->getUserById(id);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+    OATPP_ASSERT_HTTP(dbResult->hasMoreToFetch(), Status::CODE_404, "User story not found");
+
+    auto result = dbResult->fetch<oatpp::Vector<oatpp::Object<UserDto>>>();
+    OATPP_ASSERT_HTTP(result->size() == 1, Status::CODE_500, "Unknown error");
+
 
     auto user = UserDto::createShared();
+    user->id = result[0]->id;
+    user->userName = result[0]->userName;
+    user->password = result[0]->password;
+    user->email = result[0]->email;
 
     return user;
 }
