@@ -8,7 +8,7 @@ class DatabaseComponent {
 public:
 
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::postgresql::ConnectionPool>, connectionPool)([] {
-    oatpp::String connStr = "postgresql://postgres:db-pass@localhost:5432/postgres";
+    oatpp::String connStr = "postgresql://db:123456@localhost:5432/postgres";
 
     /* Create database-specific ConnectionProvider */
     auto connectionProvider = std::make_shared<oatpp::postgresql::ConnectionProvider>(connStr);

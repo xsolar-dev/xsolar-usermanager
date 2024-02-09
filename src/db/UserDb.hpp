@@ -10,7 +10,8 @@
 /**
  * UserDb client definitions.
  */
-class UserDb : public oatpp::orm::DbClient {
+class UserDb : public oatpp::orm::DbClient 
+{
 public:
 
       UserDb(const std::shared_ptr<oatpp::orm::Executor>& executor)
@@ -23,13 +24,12 @@ public:
             migration.migrate(); // <-- run migrations. This guy will throw on error.
 
             OATPP_LOGD("UserDb", "Migration - OK");
-
       }
 
       QUERY(createUser,
             "INSERT INTO users "
             "(id, username, email, pswhash) VALUES "
-            "(uuid_generate_v4(), :user.username, :user.email, crypt(:user.password, gen_salt('bf', 8))) "
+            "(uuid_generate_v4(), :user.username, :user.email, :user.password) "
             "RETURNING id;",
             PREPARE(true), // prepared statement!
             PARAM(oatpp::Object<UserModel>, user))
@@ -37,16 +37,26 @@ public:
       QUERY(changeUserPassword,
             "UPDATE users "
             "SET "
-            " pswhash=crypt(:newPassword, gen_salt('bf', 8)) "
+            " pswhash=:newPassword "
             "WHERE "
-            " id=:id AND pswhash=crypt(:oldPassword, pswhash);",
+            " id=:id AND pswhash=:oldPassword",
             PREPARE(true), // prepared statement!
             PARAM(oatpp::String, userId, "id"),
             PARAM(oatpp::String, oldPassword),
             PARAM(oatpp::String, newPassword))
 
+      QUERY(forceChangeUserPassword,
+            "UPDATE users "
+            "SET "
+            " pswhash=:newPassword "
+            "WHERE "
+            " id=:id;",
+            PREPARE(true), // prepared statement!
+            PARAM(oatpp::String, userId, "id"),
+            PARAM(oatpp::String, oldPassword))
+
       QUERY(authenticateUser,
-            "SELECT id FROM users WHERE username=:username AND pswhash=crypt(:password, pswhash);",
+            "SELECT id FROM users WHERE username=:username AND pswhash=:password",
             PREPARE(true), // prepared statement!
             PARAM(oatpp::String, username),
             PARAM(oatpp::String, password))
