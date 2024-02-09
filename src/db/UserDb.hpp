@@ -66,6 +66,11 @@ public:
             PREPARE(true), // prepared statement!            
             PARAM(oatpp::UInt32, offset),
             PARAM(oatpp::UInt32, limit))
+
+      QUERY(getUserById,
+            "SELECT * FROM users WHERE id=:id",
+            PREPARE(true),
+            PARAM(oatpp::String, id))
 };
 
 #include OATPP_CODEGEN_END(DbClient) //<- End Codegen

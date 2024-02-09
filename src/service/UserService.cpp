@@ -79,6 +79,9 @@ oatpp::Object<PageDto<oatpp::Object<UserDto>>> UserService::getUserList(const oa
 
 oatpp::Object<UserDto> UserService::getUserById(const oatpp::String& id)
 {
+    auto dbResult = m_database->getUserById(id);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+
     auto user = UserDto::createShared();
 
     return user;
