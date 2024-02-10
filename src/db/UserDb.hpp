@@ -29,7 +29,7 @@ public:
       QUERY(createUser,
             "INSERT INTO users "
             "(id, username, email, pswhash) VALUES "
-            "(uuid_generate_v4(), :user.username, :user.email, :user.password) "
+            "(:user.id, :user.username, :user.email, :user.pswhash) "
             "RETURNING id;",
             PREPARE(true), // prepared statement!
             PARAM(oatpp::Object<UserModel>, user))

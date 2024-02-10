@@ -57,6 +57,7 @@ target_link_libraries(xsolar-usermanager-lib
         PUBLIC jwt-cpp::jwt-cpp
         PUBLIC OpenSSL::SSL
         PUBLIC OpenSSL::Crypto
+        PUBLIC uuid
 
 )
 

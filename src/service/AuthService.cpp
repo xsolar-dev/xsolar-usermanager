@@ -1,14 +1,15 @@
 
 #include "AuthService.hpp"
+#include "../Utils.hpp"
 
 oatpp::Object<AuthDto> AuthService::signUp(const oatpp::Object<SignUpDto>& dto) 
 {
 
   auto user = UserModel::createShared();
-  user->id = nullptr;
+  user->id = XUtils::generate_uuid();
   user->userName = dto->userName;
   user->email = dto->email;
-  user->pswhash = dto->pswhash;
+  user->pswhash = XUtils::hash_string(dto->pswhash);
 
   auto dbResult = m_database->createUser(user);
   if(!dbResult->isSuccess()) 
@@ -35,7 +36,7 @@ oatpp::Object<AuthDto> AuthService::signUp(const oatpp::Object<SignUpDto>& dto)
 
 oatpp::Object<AuthDto> AuthService::signIn(const oatpp::Object<SignInDto>& dto) 
 {
-  auto dbResult = m_database->authenticateUser(dto->userName, dto->password);
+  auto dbResult = m_database->authenticateUser(dto->userName, XUtils::hash_string(dto->password));
   if(!dbResult->isSuccess()) 
   {
     OATPP_LOGE("AuthService", "DB-Error: '%s'", dbResult->getErrorMessage()->c_str());
