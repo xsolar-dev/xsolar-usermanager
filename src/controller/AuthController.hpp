@@ -2,6 +2,7 @@
 #define USER_MANAGEMENT_AUTHCONTROLLER_HPP
 
 #include "service/AuthService.hpp"
+#include "Utils.hpp"
 
 #include "oatpp/web/server/api/ApiController.hpp"
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"

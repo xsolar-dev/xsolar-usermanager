@@ -45,6 +45,14 @@ public:
             return createDtoResponse(Status::CODE_200, this->m_userService.deleteUserById(id));
         }
 
+    ENDPOINT_INFO(listUser)
+    {
+        info->summary = "Get list users";
+
+        info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+        info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+    }
+
     ENDPOINT("GET", "admin/list/offset/{offset}/limit/{limit}", listUser, 
         BUNDLE(String, userId),
            PATH(UInt32, offset),
@@ -53,6 +61,14 @@ public:
             return createDtoResponse(Status::CODE_200, this->m_userService.getUserList(offset, limit));
         }
 
+    ENDPOINT_INFO(getUser)
+    {
+        info->summary = "Get User Information by Id";
+
+        info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+        info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+    }
+    
     ENDPOINT("GET","admin/user/{id}", getUser,
         BUNDLE(String, userId),
         PATH(String, id))
