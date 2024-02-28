@@ -54,7 +54,7 @@ public:
     }
 
     ENDPOINT("GET", "admin/list/offset/{offset}/limit/{limit}", listUser, 
-        BUNDLE(String, userId),
+        // BUNDLE(String, userId),
            PATH(UInt32, offset),
            PATH(UInt32, limit))
         {
@@ -70,11 +70,28 @@ public:
     }
     
     ENDPOINT("GET","admin/user/{id}", getUser,
-        BUNDLE(String, userId),
+        // BUNDLE(String, userId),
         PATH(String, id))
         {
             return createDtoResponse(Status::CODE_200, this->m_userService.getUserById(id));
         }
+
+    ENDPOINT("POST", "admin/user/{id}", updateUserWithId, BODY_DTO(Object<UserDto>, dto), PATH(String, id))
+    {
+        return createDtoResponse(Status::CODE_200, m_userService.updateUserInfo(id, dto));
+    }
+
+    ENDPOINT("POST", "admin/updateUser/{id}", updateUser, BODY_DTO(Object<UserDto>, dto), PATH(String, id))
+    {
+        return createDtoResponse(Status::CODE_200, m_userService.updateUserInfo(id, dto));
+    }
+
+    ENDPOINT("POST", "admin/createUser", createUser, BODY_DTO(Object<SignUpDto>, dto))
+    {
+        return createDtoResponse(Status::CODE_200, m_userService.createUser(dto));
+    }
+
+    
 };
 
 #include OATPP_CODEGEN_END(ApiController) //<- End Codegen

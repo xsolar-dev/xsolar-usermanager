@@ -34,6 +34,9 @@ public:
     
     oatpp::Object<PageDto<oatpp::Object<UserDto>>> getUserList(const oatpp::UInt32& offset, const oatpp::UInt32& limit);
     oatpp::Object<UserDto> getUserById(const oatpp::String& id);
+    oatpp::Object<StatusDto> createUser(const oatpp::Object<SignUpDto>& dto);
+    oatpp::Object<StatusDto> updateUserInfo(const oatpp::String& id, const oatpp::Object<UserDto>& dto);
+
 private:
 
 };

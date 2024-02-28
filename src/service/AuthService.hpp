@@ -8,11 +8,14 @@
 #include "dto/PageDto.hpp"
 #include "dto/SignUpDto.hpp"
 #include "dto/SignInDto.hpp"
+#include "dto/SignInEmailDto.hpp"
 #include "dto/AuthDto.hpp"
 #include "dto/StatusDto.hpp"
+#include "dto/UserDto.hpp"
 
 #include "oatpp/web/protocol/http/Http.hpp"
 #include "oatpp/core/macro/component.hpp"
+#include <oatpp/core/Types.hpp>
 
 class AuthService 
 {
@@ -26,6 +29,9 @@ private:
 public:
   oatpp::Object<AuthDto> signUp(const oatpp::Object<SignUpDto>& dto);
   oatpp::Object<AuthDto> signIn(const oatpp::Object<SignInDto>& dto);
+  oatpp::Object<AuthDto> signInEmail(const oatpp::Object<SignInEmailDto>& dto);
+  oatpp::Object<UserDto> signInInfo(const oatpp::String& id);
+
   oatpp::Object<StatusDto> deleteUserById(const oatpp::String& id);
 
 };

@@ -77,7 +77,6 @@ public:
 
     connectionHandler->addRequestInterceptor(std::make_shared<oatpp::web::server::interceptor::AllowOptionsGlobal>());
     connectionHandler->addRequestInterceptor(std::make_shared<AuthInterceptor>(jwt));
-
     connectionHandler->addResponseInterceptor(std::make_shared<oatpp::web::server::interceptor::AllowCorsGlobal>());
 
     return connectionHandler;

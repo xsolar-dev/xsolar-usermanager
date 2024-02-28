@@ -61,6 +61,17 @@ public:
             PARAM(oatpp::String, username),
             PARAM(oatpp::String, password))
 
+      QUERY(authenticateEmail,
+            "SELECT id FROM users WHERE email=:email AND pswhash=:password",
+            PREPARE(true), // prepared statement!
+            PARAM(oatpp::String, email),
+            PARAM(oatpp::String, password))
+
+      QUERY(userInfo,
+            "SELECT id, email, username FROM users WHERE id=:id",
+            PREPARE(true), // prepared statement!
+            PARAM(oatpp::String, id))           
+
       QUERY(deleteUserById,
             "DELETE FROM users WHERE id=:id;",
             PREPARE(true), // prepared statement!
@@ -81,6 +92,14 @@ public:
             "SELECT * FROM users WHERE id=:id",
             PREPARE(true),
             PARAM(oatpp::String, id))
+
+      QUERY(updateUser,
+            "UPDATE users SET "
+            "username = :user.username, email = :user.email, pswhash = :user.pswhash "            
+            "WHERE id = :user.id",
+            PREPARE(true), // prepared statement!
+            PARAM(oatpp::Object<UserModel>, user))
+
 };
 
 #include OATPP_CODEGEN_END(DbClient) //<- End Codegen

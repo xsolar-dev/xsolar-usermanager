@@ -64,6 +64,18 @@ public:
     return createDtoResponse(Status::CODE_200, m_userService.signIn(dto));
   }
 
+  ENDPOINT("POST", "users/emailsignin", signInEmail,
+           BODY_DTO(Object<SignInEmailDto>, dto))
+  {
+    return createDtoResponse(Status::CODE_200, m_userService.signInEmail(dto));
+  }
+
+  ENDPOINT("GET", "users/me", signInInfo,
+           BUNDLE(String, userId))
+  {
+    return createDtoResponse(Status::CODE_200, m_userService.signInInfo(userId));
+  }
+
   ENDPOINT_INFO(deleteUser) 
   {
     info->summary = "Delete User";
